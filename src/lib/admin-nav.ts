@@ -1,0 +1,15 @@
+export const ADMIN_NAV = [
+  { href: "/admin", label: "نمای کلی", icon: "▦" },
+  { href: "/admin/users", label: "کاربران", icon: "◉" },
+  { href: "/admin/analyses", label: "تحلیل‌ها", icon: "📑" },
+  { href: "/admin/symbols", label: "نمادها", icon: "🔣" },
+  { href: "/admin/requests", label: "صف درخواست", icon: "✦" },
+  { href: "/admin/payments", label: "پرداخت‌ها", icon: "₮" },
+  { href: "/admin/subscriptions", label: "اشتراک‌ها", icon: "⌚" },
+  { href: "/admin/referrals", label: "ارجاع‌ها", icon: "↗" },
+  { href: "/admin/newsletters", label: "خبرنامه", icon: "✉" },
+  { href: "/admin/notifications", label: "اعلان‌ها", icon: "🔔" },
+  { href: "/admin/verification", label: "تأیید هویت", icon: "✓" },
+  { href: "/admin/audit-logs", label: "لاگ ممیزی", icon: "☰" },
+  { href: "/admin/settings", label: "تنظیمات", icon: "⚙" },
+] as const;
