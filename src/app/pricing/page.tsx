@@ -1,80 +1,177 @@
+// src/app/pricing/page.tsx
 import Link from "next/link";
 
-export const metadata = { title: "تعرفه اشتراک" };
+export const metadata = { title: "پلن‌های اشتراک" };
 
-const PLANS = [
-  { duration: "۱ ماه", price: "۷٬۰۰۰٬۰۰۰", unit: "تومان", popular: false },
-  { duration: "۳ ماه", price: "۲۰٬۰۰۰٬۰۰۰", unit: "تومان", popular: true },
-  { duration: "۶ ماه", price: "۳۵٬۰۰۰٬۰۰۰", unit: "تومان", popular: false },
-  { duration: "۱۲ ماه", price: "۶۰٬۰۰۰٬۰۰۰", unit: "تومان", popular: false },
+const plans = [
+  {
+    name: "Explorer",
+    accent: "border-cyan-400/35 bg-cyan-400/10",
+    label: "برای شروع منظم",
+    description: "فضای کاری ضروری برای مشاهده بازار، یادگیری و ساخت یک فرآیند شخصی.",
+    report: "گزارش خلاصه با سطح سریع",
+    features: [
+      "ترمینال نموداری و داده‌های عمومی متصل",
+      "واچ‌لیست، ژورنال و هشدارهای پایه",
+      "آکادمی مقدماتی و مقاله‌های آموزشی",
+      "گزارش کوتاه هوش ماشین در سطح اشتراک",
+    ],
+  },
+  {
+    name: "Pro",
+    accent: "border-violet-400/45 bg-violet-400/10",
+    label: "برای تحلیل روزانه",
+    description: "برای معامله‌گری که می‌خواهد زمینه بازار، گزارش چندمیزه و مرور منظم داشته باشد.",
+    report: "گزارش استاندارد با سطح حرفه‌ای",
+    featured: true,
+    features: [
+      "تمام امکانات Explorer",
+      "گزارش چندمیزه با شواهد و اختلاف دیدگاه‌ها",
+      "سناریوهای جایگزین و خروجی استاندارد",
+      "اعلان‌های قابل شخصی‌سازی و اتصال تلگرام",
+    ],
+  },
+  {
+    name: "Desk",
+    accent: "border-amber-400/40 bg-amber-400/10",
+    label: "برای پژوهش عمیق",
+    description: "لایه پژوهشی پیشرفته برای کاربرانی که گزارش مفصل، مدل عمیق و ابزارهای بیشتر می‌خواهند.",
+    report: "گزارش عمیق با سطح Desk",
+    features: [
+      "تمام امکانات Pro",
+      "گزارش عمیق با زمینه بیشتر و تضادهای عامل‌ها",
+      "پروفایل‌های گزارش و بازه‌های قابل تنظیم بیشتر",
+      "دسترسی اولویت‌دار به ابزارهای در حال عرضه",
+    ],
+  },
 ];
 
-const FEATURES = [
-  "دسترسی به تحلیل‌های سه‌لایه نمادها",
-  "صفحه اختصاصی هر نماد با تاریخچه",
-  "واچ‌لیست و هشدارهای هوشمند",
-  "خبرنامه هفتگی هوشمندی بازار",
-  "درخواست تحلیل اختصاصی (پرداخت جداگانه)",
-  "ژورنال معاملاتی شخصی",
+const comparisonRows = [
+  ["نمودارهای محاسبه‌شده", "کندل و خطی", "هیکن‌آشی، رنکو، رنج و TPO", "تمام حالت‌ها، TPO و Point & Figure"],
+  ["سطح هوش ماشین", "سریع", "حرفه‌ای", "عمیق"],
+  ["طول گزارش", "خلاصه", "خلاصه و استاندارد", "خلاصه، استاندارد و عمیق"],
+  ["بازارهای توسعه‌پذیر", "داده‌های عمومی", "منابع متصل بیشتر", "اولویت ابزارهای پژوهشی"],
+  ["پاداش دعوت", "فعال", "فعال", "فعال"],
 ];
 
 export default function PricingPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">تعرفه اشتراک</h1>
-        <p className="mt-4 text-lg text-muted">دسترسی پریمیوم به هوشمندی بازار مافید</p>
-      </div>
+    <div className="overflow-hidden">
+      <section className="section-glow border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            پلن‌های مبتنی بر سطح دسترسی
+          </span>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            سطح هوش ماشین را متناسب با فرآیند خود انتخاب کنید
+          </h1>
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-muted">
+            تفاوت پلن‌ها فقط در تعداد قابلیت‌ها نیست؛ در عمق گزارش، سطح مدل و میزان زمینه‌ای است که
+            برای مرور تصمیم در اختیار شما قرار می‌گیرد. قیمت و پرداخت نهایی پس از اتصال درگاه در
+            همین صفحه منتشر می‌شود.
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {PLANS.map((plan) => (
-          <div
-            key={plan.duration}
-            className={`relative rounded-2xl border p-8 ${
-              plan.popular ? "border-primary bg-surface-elevated" : "border-border bg-surface"
-            }`}
-          >
-            {plan.popular && (
-              <span className="absolute -top-3 right-1/2 translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-white">
-                محبوب
-              </span>
-            )}
-            <h3 className="text-lg font-semibold text-foreground">{plan.duration}</h3>
-            <div className="mt-4">
-              <span className="text-2xl font-bold text-foreground">{plan.price}</span>
-              <span className="mr-1 text-sm text-muted">{plan.unit}</span>
-            </div>
-            <Link
-              href="/register"
-              className={`mt-6 block rounded-lg py-2.5 text-center text-sm font-medium transition-colors ${
-                plan.popular
-                  ? "bg-primary text-white hover:bg-primary-hover"
-                  : "border border-border text-foreground hover:bg-surface-elevated"
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-3">
+          {plans.map((plan) => (
+            <article
+              key={plan.name}
+              className={`relative flex flex-col rounded-3xl border p-6 ${
+                plan.featured ? "border-violet-400/60 bg-surface shadow-xl shadow-violet-950/20" : "border-border bg-surface"
               }`}
             >
-              انتخاب پلن
-            </Link>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-16">
-        <h2 className="text-center text-2xl font-bold text-foreground">امکانات همه پلن‌ها</h2>
-        <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-border bg-surface p-8">
-          <ul className="space-y-3">
-            {FEATURES.map((feature) => (
-              <li key={feature} className="flex items-center gap-3 text-sm text-foreground">
-                <span className="text-success">✓</span>
-                {feature}
-              </li>
-            ))}
-          </ul>
+              {plan.featured ? (
+                <span className="absolute -top-3 right-6 rounded-full border border-violet-400/30 bg-violet-500 px-3 py-1 text-xs font-medium text-white">
+                  انتخاب متعادل
+                </span>
+              ) : null}
+              <span className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs ${plan.accent}`}>
+                {plan.label}
+              </span>
+              <h2 className="mt-5 text-3xl font-bold text-foreground" dir="ltr">
+                {plan.name}
+              </h2>
+              <p className="mt-3 min-h-20 text-sm leading-7 text-muted">{plan.description}</p>
+              <div className="mt-6 rounded-2xl border border-border bg-background/55 p-4">
+                <p className="text-xs text-muted">پروفایل گزارش</p>
+                <p className="mt-1 text-sm font-medium text-foreground">{plan.report}</p>
+              </div>
+              <ul className="mt-6 space-y-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2 text-sm leading-6 text-muted">
+                    <span className="mt-1 text-success">✓</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/register"
+                className={`mt-8 rounded-xl px-5 py-3 text-center text-sm font-medium transition-colors ${
+                  plan.featured
+                    ? "bg-violet-500 text-white hover:bg-violet-600"
+                    : "border border-border bg-background text-foreground hover:border-primary/50 hover:bg-surface-elevated"
+                }`}
+              >
+                درخواست دسترسی
+              </Link>
+            </article>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <div className="mt-12 rounded-xl border border-border bg-surface p-6 text-center text-sm text-muted">
-        کارت بانکی استفاده‌شده برای پرداخت باید متعلق به شخص خود شما و منطبق با هویت تأییدشده باشد.
-      </div>
+      <section className="border-y border-border bg-surface/60">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-primary">مقایسه دسترسی‌ها</p>
+            <h2 className="mt-2 text-3xl font-semibold text-foreground">
+              روشن، بدون ویژگی‌های پنهان
+            </h2>
+          </div>
+          <div className="mt-8 overflow-x-auto rounded-2xl border border-border">
+            <table className="min-w-[44rem] w-full border-collapse text-right text-sm">
+              <thead className="bg-background/75 text-foreground">
+                <tr>
+                  <th className="px-5 py-4 font-medium">قابلیت</th>
+                  <th className="px-5 py-4 font-medium" dir="ltr">Explorer</th>
+                  <th className="px-5 py-4 font-medium" dir="ltr">Pro</th>
+                  <th className="px-5 py-4 font-medium" dir="ltr">Desk</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map(([label, explorer, pro, desk]) => (
+                  <tr key={label} className="border-t border-border">
+                    <td className="px-5 py-4 font-medium text-foreground">{label}</td>
+                    <td className="px-5 py-4 text-muted">{explorer}</td>
+                    <td className="px-5 py-4 text-muted">{pro}</td>
+                    <td className="px-5 py-4 text-muted">{desk}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-amber-400/25 bg-gradient-to-l from-amber-400/10 via-primary/10 to-surface p-7 sm:p-10">
+          <p className="text-sm font-medium text-amber-300">برنامه دعوت</p>
+          <h2 className="mt-2 text-3xl font-semibold text-foreground">
+            هر ۳ اشتراک پرداختی واجد شرایط، ۳۰ روز چارت
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-8 text-muted">
+            پاداش دعوت به دسترسی بخش چارت اضافه می‌شود، نقدی یا قابل انتقال نیست و پس از بررسی
+            پرداخت و جلوگیری از سوءاستفاده اعمال خواهد شد.
+          </p>
+          <Link
+            href="/app/referrals"
+            className="mt-6 inline-flex rounded-xl border border-border bg-background/60 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+          >
+            مشاهده برنامه دعوت
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

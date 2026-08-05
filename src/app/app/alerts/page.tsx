@@ -1,34 +1,42 @@
-export const metadata = { title: "هشدارها" };
+// src/app/app/alerts/page.tsx
+import Link from "next/link";
 
-const ALERTS = [
-  { symbol: "BTC/USDT", message: "تحلیل جدید بازار منتشر شد", time: "۲ ساعت پیش", read: false },
-  { symbol: "EUR/USD", message: "به‌روزرسانی تحلیل احساسات", time: "۵ ساعت پیش", read: false },
-  { symbol: "XAU/USD", message: "یادآوری تمدید اشتراک", time: "دیروز", read: true },
+const ALERT_TYPES = [
+  ["قیمت", "وقتی یک سطح مشخص یا محدوده موردنظر شما لمس شود."],
+  ["خبر", "وقتی یک خبر مرتبط از منبع متصل به سیستم دریافت شود."],
+  ["تقویم", "قبل از رویدادهای اقتصادی یا آغاز یک نشست انتخابی."],
 ];
+
+export const metadata = { title: "هشدارها" };
 
 export default function AlertsPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <h1 className="text-2xl font-bold text-foreground">هشدارها</h1>
-        <p className="mt-1 text-sm text-muted">اعلان‌های تحلیل و نمادهای شما</p>
+        <p className="mt-1 text-sm text-muted">آگاهی از زمینه بازار، بدون نیاز به نگاه دائمی به نمودار</p>
       </div>
-
-      <div className="space-y-3">
-        {ALERTS.map((alert, idx) => (
-          <div key={idx} className={`rounded-xl border bg-surface p-5 ${alert.read ? "border-border" : "border-primary/40"}`}>
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex items-center gap-3">
-                {!alert.read && <span className="h-2 w-2 rounded-full bg-primary" />}
-                <div>
-                  <span className="font-mono text-sm text-foreground">{alert.symbol}</span>
-                  <p className="mt-1 text-sm text-muted">{alert.message}</p>
-                </div>
-              </div>
-              <span className="shrink-0 text-xs text-muted">{alert.time}</span>
-            </div>
-          </div>
+      <div className="grid gap-4 md:grid-cols-3">
+        {ALERT_TYPES.map(([title, description]) => (
+          <article key={title} className="rounded-2xl border border-border bg-surface p-5">
+            <span className="text-xl text-primary">🔔</span>
+            <h2 className="mt-4 font-semibold text-foreground">{title}</h2>
+            <p className="mt-2 text-sm leading-7 text-muted">{description}</p>
+          </article>
         ))}
+      </div>
+      <div className="rounded-2xl border border-dashed border-border bg-surface p-8 text-center">
+        <h2 className="text-xl font-semibold text-foreground">هنوز هشدار فعالی ندارید</h2>
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted">
+          ابتدا نماد و شرایط خود را در ترمینال بررسی کنید. سپس هشدار را با قیمت، رویداد و سطح ریسک
+          موردنظر خود تعریف کنید.
+        </p>
+        <Link
+          href="/app/terminal"
+          className="mt-6 inline-flex rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+        >
+          رفتن به ترمینال
+        </Link>
       </div>
     </div>
   );

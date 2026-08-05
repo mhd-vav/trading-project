@@ -1,19 +1,41 @@
+// src/app/app/journal/page.tsx
+import Image from "next/image";
+import Link from "next/link";
+
 export const metadata = { title: "ژورنال معاملاتی" };
 
 export default function JournalPage() {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">ژورنال معاملاتی</h1>
-          <p className="mt-1 text-sm text-muted">یادداشت‌ها، تز و نتایج معاملات شما</p>
+    <div className="grid items-center gap-8 lg:grid-cols-[1fr_minmax(19rem,0.8fr)]">
+      <section>
+        <p className="text-sm font-medium text-primary">ژورنال شخصی</p>
+        <h1 className="mt-2 text-3xl font-bold text-foreground">از نتیجه معامله، داده قابل مرور بسازید</h1>
+        <p className="mt-4 max-w-2xl text-sm leading-8 text-muted">
+          ژورنال برای اثبات درست‌بودن نیست. ایده، ریسک، اجرای معامله و وضعیت ذهنی را ثبت کنید تا در
+          مرور هفتگی بتوانید عادت‌های تکرارشونده را ببینید.
+        </p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link
+            href="/app/requests"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+          >
+            ثبت اولین معامله
+          </Link>
+          <Link
+            href="/blog/how-to-build-a-trading-journal"
+            className="rounded-xl border border-border bg-surface px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-elevated"
+          >
+            راهنمای ساخت ژورنال
+          </Link>
         </div>
-        <button className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover">یادداشت جدید</button>
-      </div>
-
-      <div className="rounded-xl border border-border bg-surface p-8 text-center text-muted">
-        <p className="text-sm">هنوز یادداشتی ثبت نشده است.</p>
-        <p className="mt-2 text-xs">تز ورود/خروج، یادداشت‌های احساسی و نتایج را ثبت کنید تا ارزش اشتراک خود را افزایش دهید.</p>
+      </section>
+      <div className="relative min-h-80 overflow-hidden rounded-3xl border border-border bg-surface">
+        <Image
+          src="/images/sections/trading-journal.png"
+          alt="نمای انتزاعی ژورنال معاملاتی و ابزار مدیریت ریسک"
+          fill
+          className="object-cover"
+        />
       </div>
     </div>
   );

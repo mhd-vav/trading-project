@@ -1,7 +1,14 @@
+// src/components/layout/Header.tsx
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { PUBLIC_NAV } from "@/lib/nav";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -10,7 +17,7 @@ export default function Header() {
           <span className="hidden text-sm text-muted sm:inline">هوش بازار</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {PUBLIC_NAV.map((item) => (
             <Link
               key={item.href}
@@ -23,6 +30,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link
             href="/login"
             className="text-sm text-muted transition-colors hover:text-foreground"
@@ -35,8 +43,33 @@ export default function Header() {
           >
             ثبت‌نام
           </Link>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
+            aria-expanded={isMenuOpen}
+            aria-label="منوی سایت"
+            className="rounded-lg border border-border px-3 py-2 text-sm text-foreground lg:hidden"
+          >
+            ☰
+          </button>
         </div>
       </div>
+      {isMenuOpen && (
+        <nav className="border-t border-border bg-surface px-4 py-3 lg:hidden">
+          <div className="mx-auto grid max-w-7xl gap-1">
+            {PUBLIC_NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-elevated hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

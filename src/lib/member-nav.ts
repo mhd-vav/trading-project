@@ -1,5 +1,9 @@
+// src/lib/member-nav.ts
+// src/lib/member-nav.ts
 export const MEMBER_NAV = [
   { href: "/app/dashboard", label: "داشبورد", icon: "▦" },
+  { href: "/app/terminal", label: "ترمینال بازار", icon: "⌁" },
+  { href: "/app/ai-desks", label: "میزهای هوش مصنوعی", icon: "◈" },
   { href: "/app/analyses", label: "تحلیل‌ها", icon: "📑" },
   { href: "/app/symbols", label: "نمادها", icon: "🔣" },
   { href: "/app/watchlist", label: "واچ‌لیست", icon: "★" },
@@ -8,6 +12,8 @@ export const MEMBER_NAV = [
   { href: "/app/journal", label: "ژورنال", icon: "✎" },
   { href: "/app/newsletters", label: "خبرنامه", icon: "✉" },
   { href: "/app/billing", label: "اشتراک", icon: "₮" },
+  { href: "/app/referrals", label: "دعوت دوستان", icon: "↗" },
+  { href: "/app/settings", label: "تنظیمات", icon: "⚙" },
   { href: "/app/profile", label: "پروفایل", icon: "◉" },
   { href: "/app/support", label: "پشتیبانی", icon: "?" },
 ] as const;

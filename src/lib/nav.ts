@@ -1,18 +1,25 @@
+// src/lib/nav.ts
+// src/lib/nav.ts
 export const PUBLIC_NAV = [
+  { href: "/markets", label: "بازارها" },
+  { href: "/news", label: "اخبار" },
+  { href: "/ai-desks", label: "میزهای هوش مصنوعی" },
+  { href: "/calendar", label: "تقویم بازار" },
+  { href: "/academy", label: "آکادمی" },
   { href: "/how-it-works", label: "نحوه کار" },
   { href: "/pricing", label: "تعرفه" },
-  { href: "/sample-analysis", label: "نمونه تحلیل" },
-  { href: "/request-analysis", label: "درخواست تحلیل" },
-  { href: "/faq", label: "سوالات متداول" },
-  { href: "/contact", label: "تماس" },
 ] as const;
 
 export const FOOTER_LINKS = {
   product: [
+    { href: "/markets", label: "ترمینال بازار" },
+    { href: "/news", label: "اخبار بازار" },
+    { href: "/ai-desks", label: "میزهای هوش مصنوعی" },
+    { href: "/calendar", label: "تقویم بازار" },
+    { href: "/academy", label: "آکادمی معامله‌گری" },
+    { href: "/blog", label: "بلاگ و تحلیل آموزشی" },
     { href: "/how-it-works", label: "نحوه کار پلتفرم" },
     { href: "/pricing", label: "تعرفه اشتراک" },
-    { href: "/sample-analysis", label: "نمونه تحلیل" },
-    { href: "/request-analysis", label: "درخواست تحلیل اختصاصی" },
   ],
   company: [
     { href: "/about", label: "درباره مافید" },

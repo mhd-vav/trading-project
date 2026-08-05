@@ -1,78 +1,102 @@
+// src/app/app/dashboard/page.tsx
+import Image from "next/image";
 import Link from "next/link";
+import MarketChart from "@/components/charts/MarketChart";
+import NewsFeed from "@/components/market/NewsFeed";
 
-const STATS = [
-  { label: "تحلیل‌های اخیر", value: "۲۴", icon: "📑" },
-  { label: "نمادهای واچ‌لیست", value: "۶", icon: "★" },
-  { label: "درخواست‌های در انتظار", value: "۱", icon: "✦" },
-  { label: "هشدارهای فعال", value: "۳", icon: "🔔" },
-];
-
-const RECENT = [
-  { symbol: "BTC/USDT", type: "تحلیل بازار", time: "۲ ساعت پیش" },
-  { symbol: "EUR/USD", type: "تحلیل احساسات", time: "۵ ساعت پیش" },
-  { symbol: "XAU/USD", type: "تحلیل اخبار", time: "دیروز" },
-  { symbol: "AAPL", type: "تحلیل بازار", time: "دیروز" },
+const QUICK_ACTIONS = [
+  {
+    title: "باز کردن ترمینال",
+    description: "نمودار، خبر و تحلیل چنددیدگاهی را در یک فضای کاری بررسی کنید.",
+    href: "/app/terminal",
+    icon: "⌁",
+  },
+  {
+    title: "ثبت در ژورنال",
+    description: "ایده، ریسک و نتیجه معامله را برای مرور شخصی نگه دارید.",
+    href: "/app/journal",
+    icon: "✎",
+  },
+  {
+    title: "تنظیم هشدارها",
+    description: "از تغییرات مهم بازار، رویدادها و برنامه خود آگاه بمانید.",
+    href: "/app/alerts",
+    icon: "🔔",
+  },
 ];
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">داشبورد</h1>
-        <p className="mt-1 text-sm text-muted">خلاصه هوشمندی بازار شما</p>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {STATS.map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-surface p-4">
-            <div className="mb-2 text-2xl">{stat.icon}</div>
-            <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-            <div className="text-xs text-muted">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 rounded-xl border border-border bg-surface p-6">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-semibold text-foreground">تحلیل‌های اخیر</h2>
-            <Link href="/app/analyses" className="text-sm text-primary hover:text-primary-hover">همه</Link>
-          </div>
-          <div className="space-y-3">
-            {RECENT.map((item) => (
-              <Link
-                key={item.symbol + item.type}
-                href="/app/analyses"
-                className="flex items-center justify-between rounded-lg border border-border bg-surface-elevated px-4 py-3 transition-colors hover:border-primary/50"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-sm text-foreground">{item.symbol}</span>
-                  <span className="text-xs text-muted">{item.type}</span>
-                </div>
-                <span className="text-xs text-muted">{item.time}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <h2 className="mb-3 font-semibold text-foreground">وضعیت اشتراک</h2>
-            <div className="mb-2 text-sm text-muted">پلن فعال: ۳ ماهه</div>
-            <div className="mb-4 text-xs text-muted">تاریخ تمدید: ۱۴۰۴/۰۷/۱۰</div>
-            <Link href="/app/billing" className="block rounded-lg bg-primary py-2 text-center text-sm font-medium text-white hover:bg-primary-hover">
-              مدیریت اشتراک
+    <div className="space-y-7">
+      <section className="overflow-hidden rounded-2xl border border-primary/20 bg-surface">
+        <div className="grid items-center gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_20rem]">
+          <div className="relative z-10">
+            <p className="text-sm font-medium text-primary">کاکپیت شخصی شما</p>
+            <h1 className="mt-2 text-3xl font-bold text-foreground">بازار را با زمینه دنبال کنید</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
+              ترمینال را برای بررسی داده‌های بازار باز کنید، تصمیم‌های خود را در ژورنال ثبت کنید و
+              از تحلیل‌های آموزشی به‌عنوان یک لایه پژوهش استفاده کنید.
+            </p>
+            <Link
+              href="/app/terminal"
+              className="mt-6 inline-flex rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            >
+              رفتن به ترمینال بازار
             </Link>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <h2 className="mb-3 font-semibold text-foreground">پیشرفت ارجاع</h2>
-            <div className="mb-2 text-sm text-muted">۲ از ۵ ارجاع موفق</div>
-            <div className="h-2 overflow-hidden rounded-full bg-surface-elevated">
-              <div className="h-full w-2/5 rounded-full bg-accent" />
-            </div>
+          <div className="relative min-h-48 overflow-hidden rounded-xl border border-border">
+            <Image
+              src="/images/sections/ai-trading-desks.png"
+              alt="نمای انتزاعی میزهای هوش مصنوعی"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
-      </div>
+      </section>
+
+      <section>
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold text-foreground">کار بعدی شما چیست؟</h2>
+          <p className="mt-1 text-sm text-muted">یک مسیر ساده برای شروع بدون اتصال حساب معاملاتی</p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {QUICK_ACTIONS.map((action) => (
+            <Link
+              key={action.href}
+              href={action.href}
+              className="rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-primary/50"
+            >
+              <span className="text-2xl text-primary">{action.icon}</span>
+              <h3 className="mt-4 font-semibold text-foreground">{action.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-muted">{action.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(22rem,0.75fr)]">
+        <MarketChart symbol="BTCUSD" />
+        <NewsFeed symbol="BTC" />
+      </section>
+
+      <section className="rounded-2xl border border-border bg-surface p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 className="text-xl font-semibold text-foreground">ژورنال هنوز خالی است</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-muted">
+              با ثبت اولین معامله یا وارد کردن گزارش، مافید می‌تواند الگوهای اجرای شما را در کنار
+              زمینه بازار نشان دهد.
+            </p>
+          </div>
+          <Link
+            href="/app/journal"
+            className="rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface-elevated"
+          >
+            باز کردن ژورنال
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+// src/components/layout/Footer.tsx
 import Link from "next/link";
 import { FOOTER_LINKS } from "@/lib/nav";
 
@@ -11,7 +12,7 @@ export default function Footer() {
             <span className="text-sm text-muted">هوش بازار</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-muted">
-            پلتفرم هوشمندی بازار با تحلیل نمادمحور، ساختاریافته و قابل‌فهم.
+            فضای کاری فارسی‌اول برای نمودار، خبر، ژورنال و تحلیل چنددیدگاهی بازار.
           </p>
         </div>
 

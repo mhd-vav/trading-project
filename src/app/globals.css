@@ -1,4 +1,11 @@
+/* src/app/globals.css */
 @import "tailwindcss";
+
+@font-face {
+  font-family: "IRLotus";
+  src: url("/fonts/IRLotus.woff") format("woff");
+  font-display: swap;
+}
 
 :root {
   --background: #0a0e1a;
@@ -28,16 +35,87 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
-  --font-sans: var(--font-vazirmatn);
+  --font-sans: "IRLotus", "Vazirmatn", Tahoma, Arial, sans-serif;
+}
+
+html[data-theme="light"] {
+  --background: #f4f7fb;
+  --foreground: #14213d;
+  --surface: #ffffff;
+  --surface-elevated: #e9eef7;
+  --border: #cad5e5;
+  --muted: #51627f;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent: #0891b2;
+  --success: #059669;
+  --warning: #b45309;
+  --danger: #dc2626;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-vazirmatn), system-ui, sans-serif;
-  line-height: 1.75;
+  font-family: "IRLotus", "Vazirmatn", Tahoma, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+html[data-density="compact"] body {
+  font-size: 14px;
+}
+
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.01ms !important;
 }
 
 * {
   border-color: var(--border);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 40%, transparent);
+  color: var(--foreground);
+}
+
+.page-grid {
+  background-image:
+    linear-gradient(rgba(36, 48, 73, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 48, 73, 0.32) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+
+.section-glow {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.14), transparent 32rem),
+    radial-gradient(circle at 20% 70%, rgba(59, 130, 246, 0.13), transparent 30rem);
+}
+
+.article-copy h2 {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.article-copy h3 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.article-copy p,
+.article-copy li {
+  color: var(--muted);
+}
+
+.article-copy ul {
+  margin-top: 1rem;
+  list-style: disc;
+  padding-right: 1.5rem;
 }
